@@ -52,10 +52,11 @@ export default class Async extends Component {
 
 		this.state = {
 			isLoading: false,
-			options: props.options,
+			options: props.options
 		};
 
 		this._onInputChange = this._onInputChange.bind(this);
+
 	}
 
 	componentDidMount () {
@@ -64,6 +65,12 @@ export default class Async extends Component {
 		if (autoload) {
 			this.loadOptions('');
 		}
+		this.isMounted=true;
+
+	}
+
+	componentWillUnmount(){
+		this.isMounted=false;
 	}
 
 	componentWillUpdate (nextProps, nextState) {
@@ -106,10 +113,13 @@ export default class Async extends Component {
 					cache[inputValue] = options;
 				}
 
-				this.setState({
-					isLoading: false,
-					options
-				});
+				if(this.isMounted){
+					this.setState({
+						isLoading: false,
+						options
+					});
+				}
+
 			}
 		};
 
