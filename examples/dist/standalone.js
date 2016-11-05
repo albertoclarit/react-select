@@ -92,12 +92,12 @@ var Async = (function (_Component) {
 			if (autoload) {
 				this.loadOptions('');
 			}
-			this.isMounted = true;
+			this.componentMounted = true;
 		}
 	}, {
 		key: 'componentWillUnmount',
 		value: function componentWillUnmount() {
-			this.isMounted = false;
+			this.componentMounted = false;
 		}
 	}, {
 		key: 'componentWillUpdate',
@@ -143,7 +143,7 @@ var Async = (function (_Component) {
 						cache[inputValue] = options;
 					}
 
-					if (_this2.isMounted) {
+					if (_this2.componentMounted) {
 						_this2.setState({
 							isLoading: false,
 							options: options
